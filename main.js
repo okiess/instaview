@@ -467,13 +467,13 @@ InstaView.convert = function(wiki)
 	// but since most browsers can handle it I'll save myself the hassle
 	function parse_inline_formatting(str) {
 		var em, st, i, li, o = '';
-		while ((i = str.indexOf("'''",li))) {
+		while ((i = str.indexOf("'''", li)) + 1) {
 			o += str.substring(li, i);
 			li = i + 3;
 			if (str.charAt(i + 1) === "'") {
 				li++;
 				st = !st;
-				o += st ? '<strong><em>' : '</strong>';
+				o += st ? '<strong><em>' : '</em></strong>';
 			} else {
 				em = !em;
 				o += em ? '<em>' : '</em>';
