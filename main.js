@@ -465,21 +465,22 @@ InstaView.convert = function(wiki)
 
 	// the output of this function doesn't respect the FILO structure of HTML
 	// but since most browsers can handle it I'll save myself the hassle
-	function parse_inline_formatting(str) {
-		var em, st, i, li, o = '';
-		while ((i = str.indexOf("'''", li)) + 1) {
-			o += str.substring(li, i);
-			li = i + 3;
-			if (str.charAt(i + 1) === "'") {
+	function parse_inline_formatting(str)
+	{
+		var em,st,i,li,o='';
+		while ((i=str.indexOf("''",li))+1) {
+			o += str.substring(li,i);
+			li=i+2;
+			if (str.charAt(i+2)=="'") {
 				li++;
-				st = !st;
-				o += st ? '<strong><em>' : '</em></strong>';
+				st=!st;
+				o+=st?'<strong>':'</strong>';
 			} else {
-				em = !em;
-				o += em ? '<em>' : '</em>';
+				em=!em;
+				o+=em?'<em>':'</em>';
 			}
 		}
-		return o + str.substr(li);
+		return o+str.substr(li);
 	}
 
 	function parse_inline_wiki(str)
